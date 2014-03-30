@@ -1,5 +1,6 @@
 ## Banana fana fo fana
-
+# Takes in a name and gives you a song!
+# Banana!
 
 
 def banana(name)
@@ -28,14 +29,3 @@ end
 puts "Give me a name:"
 name = gets.chomp
 puts "#{banana(name)}"
-
-# Testing
-
-# Ashley => bo-bashley
-# Travis => bo-bavis
-# Marleigh => bo-barleigh
-# Chloe => bo-bloe
-# Yolanda => bo-bolanda
-
-
-# unless name.downcase.start_with?('b')
