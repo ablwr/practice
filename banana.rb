@@ -19,10 +19,14 @@ else
   mod_name = name.downcase.slice(1..-1)
 end
 
+if name.downcase == "orange"
+	puts "Nothing rhymes with orange."
+else
 puts name.capitalize + ", " + name.capitalize + ", bo-" + (name.downcase.start_with?('b') ? mod_name.downcase.slice(0..-1) : "b"+mod_name) + " \r\n" + 
 "Banana-fana fo-" + (name.downcase.start_with?('f') ? mod_name.downcase.slice(0..-1) : "f"+mod_name) + " \r\n" + 
 "Fee-Fi-mo-" + (name.downcase.start_with?('m') ? mod_name.downcase.slice(0..-1) : "m"+mod_name) + " \r\n"  + 
 name.upcase + "!"
+end
 
 end
 
