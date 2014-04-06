@@ -19,13 +19,13 @@ else
   mod_name = name.downcase.slice(1..-1)
 end
 
-puts name.capitalize + ", " + name.capitalize + ", bo-b" + mod_name + " \r\n" + 
-"Banana-fana fo-f" + mod_name + " \r\n" + 
-"Fee-Fi-mo-m" + mod_name + " \r\n"  + 
+puts name.capitalize + ", " + name.capitalize + ", bo-" + (name.downcase.start_with?('b') ? mod_name.downcase.slice(0..-1) : "b"+mod_name) + " \r\n" + 
+"Banana-fana fo-" + (name.downcase.start_with?('f') ? mod_name.downcase.slice(0..-1) : "f"+mod_name) + " \r\n" + 
+"Fee-Fi-mo-" + (name.downcase.start_with?('m') ? mod_name.downcase.slice(0..-1) : "m"+mod_name) + " \r\n"  + 
 name.upcase + "!"
 
 end
 
 puts "Give me a name:"
 name = gets.chomp
-puts "#{banana(name)}"
+puts banana(name)
