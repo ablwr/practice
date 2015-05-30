@@ -22,64 +22,71 @@ class TicTacToe
   end
 
   def game_starter
-  puts "Welcome to Tic-Tac-Toe."
-  puts "The computer will decide who goes first. \r\n ____________"
-  if rand(1..2) == 1
-  	puts "You go first. You will be X."
-  	player_moves
-  else
-  	puts "Computer goes first. The computer is O."
-  	computer_moves
-  end
+    puts "Welcome to Tic-Tac-Toe."
+    sleep 1
+    puts "The computer will decide who goes first. \r\n ____________"
+    sleep 1
+    printed_board
+    sleep 1
+    if rand(1..2) == 1
+    	puts "You go first. You will be X."
+    	player_moves
+    else
+    	puts "Computer goes first. The computer is O."
+    	computer_moves
+    end
   end
 
   def player_moves
-  find_winner
-  # A not-very-DRY solution but one that definitely works, hoping to refactor soon.
-  puts "Your move (pick a number):"
-  STDOUT.flush
-    move = gets.chomp
-    if move == "1" 
-    	@board[:b1] = "X" unless @board[:b1] == "O"
-    elsif move == "2" 
-    	@board[:b2] = "X" unless @board[:b2] == "O"
-    elsif move == "3"
-    	@board[:b3] = "X" unless @board[:b3] == "O"
-    elsif move == "4" 
-    	@board[:b4] = "X" unless @board[:b4] == "O"
-    elsif move == "5"
-    	@board[:b5] = "X" unless @board[:b5] == "O"
-    elsif move == "6" 
-    	@board[:b6] = "X" unless @board[:b6] == "O"
-    elsif move == "7"
-    	@board[:b7] = "X" unless @board[:b7] == "O"
-    elsif move == "8" 
-    	@board[:b8] = "X" unless @board[:b8] == "O"
-    elsif move == "9"
-    	@board[:b9] = "X" unless @board[:b9] == "O" 
-    elsif move == "exit"
-    	game_over
-    else
-    	player_moves
-    end
-  puts printed_board
-  computer_moves
+    find_winner
+    puts "Your move (pick a number):"
+    STDOUT.flush
+      move = gets.chomp
+      if move == "1" 
+      	@board[:b1] = "X" unless @board[:b1] == "O"
+      elsif move == "2" 
+      	@board[:b2] = "X" unless @board[:b2] == "O"
+      elsif move == "3"
+      	@board[:b3] = "X" unless @board[:b3] == "O"
+      elsif move == "4" 
+      	@board[:b4] = "X" unless @board[:b4] == "O"
+      elsif move == "5"
+      	@board[:b5] = "X" unless @board[:b5] == "O"
+      elsif move == "6" 
+      	@board[:b6] = "X" unless @board[:b6] == "O"
+      elsif move == "7"
+      	@board[:b7] = "X" unless @board[:b7] == "O"
+      elsif move == "8" 
+      	@board[:b8] = "X" unless @board[:b8] == "O"
+      elsif move == "9"
+      	@board[:b9] = "X" unless @board[:b9] == "O" 
+      elsif move == "exit"
+      	game_over
+      else
+      	player_moves
+      end
+    puts printed_board
+    computer_moves
   end
 
-  # Computer moves
-  # This computer is dumb but does have the ability to overwrite moves.
   def computer_moves
     find_winner
-    @board[[:b1, :b2, :b3, :b4, :b5, :b6, :b7, :b8, :b9].sample] = 'O'
+    check_board
     puts printed_board
     player_moves
   end
 
+  def check_board
+    potential_move = [:b1, :b2, :b3, :b4, :b5, :b6, :b7, :b8, :b9].sample
+    if @board[potential_move] == " "
+      @board[potential_move] = "O"
+    else
+      check_board
+    end
+  end
 
   def find_winner
     game_over = nil
-
-  # Again, not very DRY but other efforts were not working!
 
   if (@board[:b1] == "X" && @board[:b2] == "X" && @board[:b3] == "X") \
   	|| (@board[:b4] == "X" && @board[:b5] == "X" && @board[:b6] == "X") \
@@ -110,9 +117,7 @@ class TicTacToe
   		game_over = true
   	else
   	end
-
   end
-
 
   def game_over
   end
@@ -131,7 +136,6 @@ class TicTacToe
   	puts "Mutually Assured Destruction (WINNER: NONE)"
   	repeat
   end
-
 
   def repeat
     puts "Play again? (y, n)"
